@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Projects
 
-router.get("/", (req, res) => {
+router.get("/projects", (req, res) => {
   Projects.getAll()
     .then((projects) => {
       res.json(projects);
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/projects/:id", (req, res) => {
   const { id } = req.params;
 
   Projects.getById(id)
@@ -34,7 +34,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/projects", (req, res) => {
   const projectData = req.body;
 
   Projects.add(projectData)
@@ -46,7 +46,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/projects/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/porjects/:id", (req, res) => {
   const { id } = req.params;
 
   Projects.remove(id)
@@ -95,7 +95,7 @@ router.get("/resources", (req, res) => {
     });
 });
 
-router.get("/:id/resources", (req, res) => {
+router.get("/projects/:id/resources", (req, res) => {
   Projects.getProjectResources(req.params.id)
     .then((resources) => {
       res.status(200).json({ data: resources });
@@ -129,7 +129,7 @@ router.get("/tasks", (req, res) => {
     });
 });
 
-router.get("/:id/tasks", (req, res) => {
+router.get("/projects/:id/tasks", (req, res) => {
   Projects.getProjectTasks(req.params.id)
     .then((tasks) => {
       res.status(200).json({ data: tasks });
