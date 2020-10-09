@@ -1,68 +1,26 @@
 const express = require("express");
 const helmet = require("helmet");
 
-const db = require("./data/db-config.js");
+const db = require("../data/db-config.js");
+const ProjectRouter = require("../projects/project-router.js");
 
 const server = express();
 
 server.use(helmet());
 server.use(express.json());
 
-server.get("/api/projects", (req, res) => {
-  db("projects")
-    .then((projects) => {
-      res.status(200).json(projects);
-    })
-    .catch((error) => {
-      res.status(500).json(error);
-    });
+server.use("/api/projects", ProjectRouter);
+
+server.get("/api/tasks", (req, res) => {
+    db("tasks")
+        .join("")
+        .select("")
+        .then(tasks => {
+            res.status(200).json({ data: tasks });
+        })
+        .catch(error => {
+            res.status(500).json({ message: error.message });
+        });
 });
-
-// server.get('/api/ingredients', (req, res) => {
-//   db('animals as a')
-//     .leftJoin('species as s', 's.id', 'a.species_id')
-//     .select('a.id', 'a.animal_name', 's.species_name')
-//   .then(animals => {
-//     res.status(200).json(animals);
-//   })
-//   .catch(error => {
-//     res.status(500).json(error);
-//   });
-// });
-
-// // create animal
-// server.post('/api/animals', (req, res) => {
-//   db('animals').insert(req.body)
-//   .then(ids => {
-//     const id = ids[0];
-
-//     db('animals')
-//       .where({ id })
-//       .first()
-//     .then(animal => {
-//       res.status(201).json(animal);
-//     });
-//   })
-//   .catch(error => {
-//     res.status(500).json(error);
-//   });
-// });
-
-// // remove species
-// server.delete('/api/species/:id', (req, res) => {
-//   db('species')
-//     .where({ id: req.params.id })
-//     .del()
-//   .then(count => {
-//     if (count > 0) {
-//       res.status(204).end();
-//     } else {
-//       res.status(404).json({ message: 'Record not found' });
-//     }
-//   })
-//   .catch(error => {
-//     res.status(500).json(error);
-//   });
-// });
 
 module.exports = server;
