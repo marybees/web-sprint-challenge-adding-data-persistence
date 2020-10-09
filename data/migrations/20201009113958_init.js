@@ -11,7 +11,7 @@ exports.up = function (knex) {
       tbl.string("resource_name").notNullable();
       tbl.string("resource_description").notNullable();
       tbl
-        .integer("recipe_id")
+        .integer("resource_id")
         .unsigned()
         .references("id")
         .inTable("projects")
@@ -20,7 +20,7 @@ exports.up = function (knex) {
     })
     .createTable("tasks", (tbl) => {
       tbl.increments();
-      tbl.string("task_dscription").notNullable();
+      tbl.string("task_description").notNullable();
       tbl.string("task_notes").notNullable();
       tbl.boolean("task_completed").notNullable().defaultTo(false);
       tbl
