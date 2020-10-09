@@ -5,20 +5,21 @@ exports.seed = function (knex) {
       return knex("projects").insert([
         {
           id: 1,
-          project_name: "Bleh",
-          project_description: "Blah",
-          project_completed: true,
+          project_name: "Remodel the house",
+          project_description: "Gut and remodel the bathrooms and kitchen",
+          project_completed: false,
         },
         {
           id: 2,
-          project_name: "Hi",
-          project_description: "Bye",
-          project_completed: true,
+          project_name: "Landscape the yard",
+          project_description: "Plant shrubbery, trees and gardens in the yard",
+          project_completed: false,
         },
         {
           id: 3,
-          project_name: "He",
-          project_description: "She",
+          project_name: "Clean the car",
+          project_description:
+            "Wash the exterior and vacuum the interior of the car",
           project_completed: true,
         },
       ]);
